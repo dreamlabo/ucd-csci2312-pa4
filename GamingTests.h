@@ -13,8 +13,8 @@ using namespace Testing;
 
 // - - - - - - - - - Tests: class Piece - - - - - - - - - -
 
-// Smoketest: constructor, copy constructor, destructor, resources
-void test_piece_smoketest(ErrorContext &ec);
+//// Smoketest: constructor, copy constructor, destructor, resources
+//void test_piece_smoketest(ErrorContext &ec);
 
 //// Piece id-s, names, and printing
 //void test_piece_print(ErrorContext &ec, unsigned int numRuns);
@@ -46,9 +46,9 @@ void test_piece_smoketest(ErrorContext &ec);
 //
 //// - - - - - - - - - Tests: class Game - - - - - - - - - -
 //
-//// Smoketest: constructor, copy constructor, destructor, number of pieces
-//void test_game_smoketest(ErrorContext &ec);
-//
+// Smoketest: constructor, copy constructor, destructor, number of pieces
+void test_game_smoketest(ErrorContext &ec);
+
 //// Population of the game grid
 //void test_game_populate(ErrorContext &ec, unsigned int numRuns);
 //

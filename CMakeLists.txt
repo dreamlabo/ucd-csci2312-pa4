@@ -23,6 +23,6 @@ set(SOURCE_FILES
     Resource.h
     Simple.h
     Strategic.h
-    Strategy.h)
+    Strategy.h Game.cpp)
 
 add_executable(ucd_csci2312_pa4 ${SOURCE_FILES})
