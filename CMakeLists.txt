@@ -15,6 +15,7 @@ set(SOURCE_FILES
     Exceptions.h
     Food.h
     Game.h
+
     Gaming.h
     GamingTests.cpp
     GamingTests.h
@@ -23,6 +24,6 @@ set(SOURCE_FILES
     Resource.h
     Simple.h
     Strategic.h
-    Strategy.h Game.cpp)
+    Strategy.h Game.cpp Exceptions.cpp Agent.cpp Piece.cpp Simple.cpp Strategic.cpp)
 
-add_executable(ucd_csci2312_pa4 ${SOURCE_FILES})
+add_executable(ucd_csci2312_pa4 ${SOURCE_FILES} Exceptions.cpp Agent.cpp Piece.cpp Simple.cpp Strategic.cpp)

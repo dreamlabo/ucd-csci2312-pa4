@@ -13,12 +13,12 @@ using namespace Testing;
 
 // - - - - - - - - - Tests: class Piece - - - - - - - - - -
 
-//// Smoketest: constructor, copy constructor, destructor, resources
-//void test_piece_smoketest(ErrorContext &ec);
+// Smoketest: constructor, copy constructor, destructor, resources
+void test_piece_smoketest(ErrorContext &ec);
 
-//// Piece id-s, names, and printing
-//void test_piece_print(ErrorContext &ec, unsigned int numRuns);
-//
+// Piece id-s, names, and printing
+void test_piece_print(ErrorContext &ec, unsigned int numRuns);
+
 //// Piece aging and viability
 //void test_piece_aging(ErrorContext &ec, unsigned int numRuns);
 //
@@ -55,9 +55,9 @@ void test_game_smoketest(ErrorContext &ec);
 //// Getting a Piece by position
 //void test_game_getpiece(ErrorContext &ec, unsigned int numRuns);
 //
-//// Printing of a game
-//void test_game_print(ErrorContext &ec, unsigned int numRuns);
-//
+// Printing of a game
+void test_game_print(ErrorContext &ec, unsigned int numRuns);
+
 //// Randomization of motion
 //void test_game_randomization(ErrorContext &ec, unsigned int numRuns);
 //
