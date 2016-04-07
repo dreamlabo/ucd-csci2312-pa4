@@ -5,7 +5,7 @@
 #include "Piece.h"
 
 namespace Gaming {
-     const double AGENT_FATIGUE_RATE = 0.3;
+     const double Agent::AGENT_FATIGUE_RATE = 0.3;
 
 
 
@@ -19,6 +19,31 @@ namespace Gaming {
     Agent::~Agent() {
         __energy = 0; //?
 
+    }
+
+
+// age function
+    void Agent::age() {
+      __energy = __energy - AGENT_FATIGUE_RATE;
+    }
+
+
+// overloaded operator*  function
+    Piece &Agent::operator*(Piece &other) {
+
+        //return <#initializer#>;
+    }
+
+
+// interact function (Agent parameter)
+    Piece &Agent::interact(Agent *) {
+        //return <#initializer#>;
+    }
+
+
+// interact function (Resource parameter)
+    Piece &Agent::interact(Resource *) {
+       // return <#initializer#>;
     }
 
 

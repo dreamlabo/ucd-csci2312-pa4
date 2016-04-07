@@ -3,6 +3,9 @@
 
 
 #include "Game.h"
+#include "Simple.h"
+#include "Strategic.h"
+#include "Agent.h"
 #include <iostream>
 #include <vector>
 #include <array>
@@ -50,7 +53,13 @@ namespace Gaming {
       __numInitAgents = 0;
       __numInitResources = 0;
 
-        // need grid
+        // set up game board
+//        for ( size_t index = 0; index < MIN_WIDTH * MIN_HEIGHT; index++){
+//            __grid.push_back(nullptr);
+//        }
+
+
+
 
     }
 
@@ -70,6 +79,22 @@ namespace Gaming {
             __status = NOT_STARTED;
             __numInitAgents = 0;
             __numInitResources = 0;
+
+            //set up game board
+            for ( size_t index = 0; index < __width * __height; index++){
+                __grid.push_back(nullptr);
+            }
+
+
+//            if (!manual)
+//            {
+//                populate();
+//            }
+//            else
+//            {
+//                __numInitResources = 0;
+//                __numInitAgents = 0;
+//            }
             // needs work
             // needs __grid
         }
@@ -83,8 +108,15 @@ namespace Gaming {
     }
 
     unsigned int Game::getNumPieces() const {  // needs work
-        return __numInitAgents;
+        unsigned int numAgents = 0;
+
+        for (auto it = __grid.begin(); it != __grid.end(); ++it){
+            Piece *piece = dynamic_cast<Piece*>(*it);
+            if (piece) numAgents++;
+        }
+        return numAgents;
     }
+
 
 
 
@@ -103,31 +135,49 @@ namespace Gaming {
 // Getters *******************
 
 // getNumAgents Function
-// returns __numInitAgents
+// returns the number of Agents on the grid
 // Precondition:
-// Postcondition:  __numInitAgents is returned.
+// Postcondition: the number of Agents is returned
     unsigned int Game::getNumAgents() const {
-        return __numInitAgents;
+        unsigned int numAgents = 0;
+
+        for (auto it = __grid.begin(); it != __grid.end(); ++it){
+            Agent *agent = dynamic_cast<Agent*>(*it);
+            if (agent) numAgents++;
+        }
+        return numAgents;
     }
 
 
 
 // getNumSimple Function
-//
+// returns the number of Simple Agents on the grid
 // Precondition:
-// Postcondition:
+// Postcondition: the number of Simple Agents is returned
     unsigned int Game::getNumSimple() const {
-       // needs work;
+      unsigned int numSimpleAgents = 0;
+
+        for (auto it = __grid.begin(); it != __grid.end(); ++it){
+            Agent *agent = dynamic_cast<Simple*>(*it);
+            if (agent) numSimpleAgents++;
+        }
+        return numSimpleAgents;
     }
 
 
 
-//  getNumStrategic Function
-//
+// getNumStrategic Function
+// returns the number of Strategic Agents on the game board
 // Precondition:
-// Postcondition:
+// Postcondition: the number of Strategic Agents is returned
     unsigned int Game::getNumStrategic() const {
-       // needs work return 0;
+        unsigned int numStrategicAgents = 0;
+
+        for (auto it = __grid.begin(); it != __grid.end(); ++it){
+            Agent *agent = dynamic_cast<Strategic*>(*it);
+            if (agent) numStrategicAgents++;
+        }
+        return numStrategicAgents;
     }
 
 //  getNumResources Function
@@ -141,6 +191,23 @@ namespace Gaming {
 
 // overloaded operator<<
     std::ostream &operator<<(std::ostream &os, const Game &game) {
+        os << "Round " << game.__round << std::endl;
+
+      //  unsigned int j = 0;
+        for (size_t index = 0; index < game.__height; index++){
+            for(size_t index_2 = 0; index_2 < game.__width; index_2++){
+                os << "[";
+                if(game.__grid[index + index_2] != nullptr)
+                {
+                    os <<  game.__grid[index + index_2];
+                }
+                else
+                    os << "     ";
+
+                os << "]";
+            }
+
+        }
         return os;
     }
 
