@@ -1,6 +1,9 @@
 // Todd Labo
 //PA-4
 
+
+
+#include <iomanip>
 #include "Game.h"
 #include "Resource.h"
 #include "Food.h"
@@ -14,9 +17,8 @@ namespace Gaming {
 // food constructor
     Food::Food(const Gaming::Game &g, const Gaming::Position &p, double capacity)
             : Resource (g, p, capacity){
-
+            __capacity = capacity;
     }
-
 
 
     Food::~Food() {
@@ -25,7 +27,7 @@ namespace Gaming {
 
 // print function
     void Food::print(std::ostream &os) const {
-       os <<  FOOD_ID;
+       os <<  Food::FOOD_ID << std::setw(4)  << std::left <<Piece::__id;
     }
 
 

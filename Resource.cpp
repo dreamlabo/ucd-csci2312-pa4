@@ -11,10 +11,9 @@ namespace Gaming{
 
 //Resource Constructor
     Gaming::Resource::Resource(const Gaming::Game &g, const Gaming::Position &p, double capacity)
-            : Piece(g, p)
-    {
-        __capacity = capacity;
-    }
+            : Piece(g, p) {
+              __capacity = capacity;
+            }
 
 // Resource Destructor
     Resource::~Resource() {
@@ -24,34 +23,42 @@ namespace Gaming{
 
 // consume function
     double Resource::consume() {
-        return 0;
+        double consume = __capacity;
+        __capacity = 0;
+        finish();
+        return consume;
     }
 
 
 // age function
     void Resource::age() {
-        __capacity /= RESOURCE_SPOIL_FACTOR;
+        __capacity = __capacity/ Resource::RESOURCE_SPOIL_FACTOR;
+        if (__capacity < 1){
+            finish();
+        }
     }
+
+
 
 // takeTurn function
     ActionType Resource::takeTurn(const Surroundings &s) const {
-        return S;
+        return STAY;
     }
 
 // overloaded operator*
     Piece &Resource::operator*(Piece &other) {
-        //return <#initializer#>;
+        return *this;
     }
 
 // interact function   (Agent parameter)
-    Piece &Resource::interact(Agent *) {
-        //return <#initializer#>;
+    Piece &Resource::interact(Agent *agent) {
+        return *this;
     }
 
 
 // interact function (Resource Parameter)
-    Piece &Resource::interact(Resource *) {
-        //return <#initializer#>;
+    Piece &Resource::interact(Resource *resource) {
+        return *this;
     }
 
 

@@ -14,7 +14,7 @@ namespace Gaming {
 
     protected:
         double __capacity;
-        
+
     public:
         static const double RESOURCE_SPOIL_FACTOR;
 

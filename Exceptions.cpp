@@ -19,11 +19,11 @@ namespace Gaming{
     }
 
     std::ostream &operator<<(std::ostream &os, const GamingException &ex) {
-        os << ex.__name << std::endl;
-
+        os << ex.getName() << std::endl;
         return os;
-
     }
+
+
 //***********************************************************************************
 
 //******************************
@@ -31,7 +31,10 @@ namespace Gaming{
 //******************************
 // DimensionEx Constructor
     Gaming::DimensionEx::DimensionEx(unsigned expWidth, unsigned expHeight, unsigned width, unsigned height):
-        __exp_height(expHeight), __exp_width(expHeight), __width(width), __height(height){
+        __exp_height(expHeight),
+        __exp_width(expWidth),
+        __width(width),
+        __height(height){
         setName("DimensionEx");
     }
 
@@ -96,8 +99,91 @@ namespace Gaming{
 
 
 
+    void OutOfBoundsEx::__print_args(std::ostream &os) const {
+        os << getName();
+        os << "Width: " << getExpWidth();
+        os << "Height: " << getHeight();
+        os << "Exp. Width: " << getExpWidth();
+        os << "Exp. Height: " << getHeight();
+
+    }
+
+
+  OutOfBoundsEx::OutOfBoundsEx(unsigned maxWidth, unsigned maxHeight, unsigned width, unsigned height)
+          : DimensionEx(maxWidth, maxHeight, width, height){
+             setName("OutOfBoundsEx");
+    }
+
+
+
+
+
+
+//*******************************************************************************************
+
+//****************************************
+//  Class      PositionEx                *
+//    (Inherents from GamingException)   *
+//****************************************
+PositionEx::PositionEx(unsigned x, unsigned y)
+            : __x(x), __y(y) {
+            setName("PositionEx");
+    }
+
+
+// __print_args function
+//
+// Precondition: a PositionEx exception has been thrown
+// Postcondition: the
+    void PositionEx::__print_args(std::ostream &os) const {
+         os << "X: " << __x << ", " << "Y: " << __y << std::endl;
+    }
+
+//************************************************************************************************
+//****************************************
+//  Class    PositionNonemptyEx          *
+//        (Inherents from PositionEx)    *
+//****************************************
+    Gaming::PositionNonemptyEx::PositionNonemptyEx(unsigned x, unsigned y)
+        : PositionEx(x,y){
+   // setName("PositionNonemptyEx");
+    }
+
+//************************************************************************************************
+//****************************************
+//  Class    PositionEmptyEx             *
+//        (Inherents from PositionEx)    *
+//****************************************
+    Gaming::PositionEmptyEx::PositionEmptyEx(unsigned x, unsigned y)
+            : PositionEx(x,y) {
+        setName("PositionEmptyEx");
+
+    }
+
+    void Gaming::PosVectorEmptyEx::__print_args(std::ostream &os) const {
+        os << getName() << std::endl;
+    }
+
+    PosVectorEmptyEx::PosVectorEmptyEx() {
+        setName("PosVectorEmptyEx");
+    }
+
 
 }// end of Gaming namespace
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

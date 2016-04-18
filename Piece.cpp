@@ -7,9 +7,7 @@
 
 namespace Gaming{
 
-    unsigned int Piece::__idGen = 0;
-
-
+    unsigned int Piece::__idGen = 100;
 
 
 // Piece Constructor
@@ -24,8 +22,14 @@ namespace Gaming{
     Piece::~Piece() {
             __finished = true;
             __turned = true;
-            __id = 0;
+           // __idGen--;
         //or should it be __idGen--  ?
+    }
+
+    std::ostream &operator<<(std::ostream &os, const Piece &piece) {
+        piece.print(os);
+        return os;
+
     }
 
 
