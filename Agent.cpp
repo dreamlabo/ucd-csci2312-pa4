@@ -1,3 +1,7 @@
+// Todd Labo
+// PA-4
+
+
 #include "Food.h"
 #include "Advantage.h"
 #include "Agent.h"
@@ -7,8 +11,6 @@ namespace Gaming {
      const double Agent::AGENT_FATIGUE_RATE = 0.3;
 
 
-
-
 // Agent Constructor
     Agent::Agent(const Gaming::Game &g, const Gaming::Position &p, double energy) : Piece (g, p) {
             __energy = energy;
@@ -16,23 +18,37 @@ namespace Gaming {
 
 // Agent Destructor
     Agent::~Agent() {
-        __energy = 0; //?
-    }
+     }
 
 
 // age function
     void Agent::age() {
       __energy = __energy - AGENT_FATIGUE_RATE;
-
     }
 
 
 // overloaded operator*  function
     Piece &Agent::operator*(Piece &other) {
+        Agent *other_Agent = dynamic_cast<Agent *>(&other);
+            if(other_Agent) {
+                interact(other_Agent);
+            }
 
+        Resource *res = dynamic_cast<Resource *>(&other);
+            if(res) {
+                interact(res);
+            }
+
+            if(isFinished()){
+                Position new_Pos = other.getPosition();
+                Position orig_Pos = this->getPosition();
+                setPosition(new_Pos);
+                other.setPosition(orig_Pos);
+            }
         return *this;
-
     }
+
+
 
 
 // interact function (Agent parameter)
@@ -53,11 +69,10 @@ namespace Gaming {
     }
 
 
-
 // interact function (Resource parameter)
     Piece &Agent::interact(Resource *resource) {
        __energy += resource->consume();
-
+        return *this;
     }
 
 

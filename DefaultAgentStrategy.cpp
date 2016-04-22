@@ -9,67 +9,64 @@ namespace Gaming {
 
 // DefaultAgentStrategy Constructor
   DefaultAgentStrategy::DefaultAgentStrategy()
-          : Strategy()
-
-    {
-
+          : Strategy(){
     }
 
 
     DefaultAgentStrategy::~DefaultAgentStrategy() {
-
     }
 
 
 // overloaded operator()
     ActionType DefaultAgentStrategy::operator()(const Surroundings &s) const {
-//      std::vector<int> surrounding_Advantage;
-//      std::vector<int> surrounding_Food;
-//      std::vector<int> surrounding_Empty;
-//      std::vector<int> surrounding_Simple;
-//      Position pos(1,1);
-//      ActionType action;
-//
-//      for (unsigned int index = 0; index < s.array.size(); index++) {
-//        if (s.array[index] == ADVANTAGE) {
-//          surrounding_Advantage.push_back(index);
-//        }
-//        else if (s.array[index] == FOOD) {
-//          surrounding_Food.push_back(index);
-//        }
-//        else if (s.array[index] == EMPTY) {
-//          surrounding_Empty.push_back(index);
-//        }
-//        else if (s.array[index] == SIMPLE) {
-//          surrounding_Simple.push_back(index);
-//        }
-//      }
-//
-//
-//      if (surrounding_Advantage.size() > 0){
-//        PositionRandomizer positionRandomizer;
-//        Position position = positionRandomizer(surrounding_Advantage);
-//        action =  Game::reachSurroundings(pos, position);
-//      }
-//      else if (surrounding_Food.size() > 0){
-//        PositionRandomizer positionRandomizer;
-//        Position position = positionRandomizer(surrounding_Advantage);
-//        action = Game::reachSurroundings(pos, position);
-//      }
-//      else if (surrounding_Empty.size() > 0){
-//        PositionRandomizer positionRandomizer;
-//        Position position = positionRandomizer(surrounding_Advantage);
-//        action =  Game::reachSurroundings(pos, position);
-//      }
-//      else if (surrounding_Simple.size() > 0){
-//        PositionRandomizer positionRandomizer;
-//        Position position = positionRandomizer(surrounding_Advantage);
-//        action =  Game::reachSurroundings(pos, position);
-//      }
-//      else
-//        action = STAY;
-//
-//      return action;
+
+//    If there are adjacent Advantage-s, returns a motion to one of them. That is, it prefers Advantage to Food.
+//    lf there aren't adjacent Advantage-s, returns a move to an adjacent Food.
+//    If there arent' adjacent Food-s, return's a move to an adjacent empty position.
+//    If there aren't adjacent empty positions, it returns a move to an adjacent Simple agent (i.e. attacking it).
+//    If no adjacent Simple agents, returns STAY.
+
+      std::vector<int> advantage_Surr;
+      std::vector<int> food_Surr;
+      std::vector<int> empty_Surr;
+      std::vector<int> simple_Surr;
+      ActionType ac;
+
+      for (unsigned int index = 0; index < s.array.size(); index++) {
+        if (s.array[index] == PieceType::ADVANTAGE) {
+          advantage_Surr.push_back(index);
+        }
+        else if (s.array[index] == FOOD) {
+          food_Surr.push_back(index);
+        }
+        else if (s.array[index] == EMPTY) {
+          empty_Surr.push_back(index);
+        }
+        else if (s.array[index] == SIMPLE) {
+          simple_Surr.push_back(index);
+        }
+        else {
+          // ignore the other types
+        }
+      }
+
+      //now execute the strategy
+      if (advantage_Surr.size() > 0) {
+        ac = Game::reachSurroundings(Position(1, 1), Game::randomPosition(advantage_Surr));
+      }
+      else if (food_Surr.size() > 0) {
+        ac = Game::reachSurroundings(Position(1, 1), Game::randomPosition(food_Surr));
+      }
+      else if (empty_Surr.size() > 0) {
+        ac = Game::reachSurroundings(Position(1, 1), Game::randomPosition(empty_Surr));
+      }
+      else if (simple_Surr.size() > 0) {
+        ac = Game::reachSurroundings(Position(1, 1), Game::randomPosition(simple_Surr));
+      }
+      else {
+        ac = STAY;
+      }
+      return ac;
     }
 
 } // end namespace Gaming

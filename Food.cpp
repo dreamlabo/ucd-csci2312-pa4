@@ -1,13 +1,10 @@
 // Todd Labo
 //PA-4
 
-
-
 #include <iomanip>
 #include "Game.h"
 #include "Resource.h"
 #include "Food.h"
-
 
 namespace Gaming {
 
@@ -20,16 +17,13 @@ namespace Gaming {
             __capacity = capacity;
     }
 
-
     Food::~Food() {
-
     }
 
 // print function
     void Food::print(std::ostream &os) const {
-       os <<  Food::FOOD_ID << std::setw(4)  << std::left <<Piece::__id;
+       os <<  FOOD_ID << std::setw(4)  << std::left << __id;
     }
-
 
 } // end of namespace Gaming
 

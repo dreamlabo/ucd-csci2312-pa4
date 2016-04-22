@@ -1,13 +1,11 @@
-
+// Todd Labo
+// PA-4
 
 #include "Piece.h"
 
-
-
-
 namespace Gaming{
 
-    unsigned int Piece::__idGen = 100;
+    unsigned int Piece::__idGen = 1000;
 
 
 // Piece Constructor
@@ -20,10 +18,10 @@ namespace Gaming{
 
 // Piece desctructor
     Piece::~Piece() {
+
             __finished = true;
             __turned = true;
-           // __idGen--;
-        //or should it be __idGen--  ?
+
     }
 
     std::ostream &operator<<(std::ostream &os, const Piece &piece) {

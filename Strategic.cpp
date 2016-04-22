@@ -1,3 +1,5 @@
+// Todd Labo
+// PA-4
 
 #include <iomanip>
 #include "Agent.h"
@@ -7,8 +9,7 @@ namespace Gaming {
 
     const char Strategic::STRATEGIC_ID = 'T' ;
 
-
-    Gaming::Strategic::Strategic(const Gaming::Game &g, const Gaming::Position &p, double energy, Gaming::Strategy *s)
+    Gaming::Strategic::Strategic(const Gaming::Game &g, const Gaming::Position &p, double energy, Strategy *s)
             : Agent (g, p, energy){
               __strategy = s;
             }
@@ -16,13 +17,11 @@ namespace Gaming {
 
 // Strategic Destructor
     Strategic::~Strategic() {
-
     }
 
 // print function
     void Strategic::print(std::ostream &os) const {
-        os << Strategic::STRATEGIC_ID << std::setw(4) << std::left <<Piece::__id;
-
+        os << Strategic::STRATEGIC_ID << std::setw(4) << std::left << __id;
     }
 
 

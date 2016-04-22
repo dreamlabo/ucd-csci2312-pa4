@@ -117,8 +117,6 @@ namespace Gaming{
 
 
 
-
-
 //*******************************************************************************************
 
 //****************************************
@@ -146,7 +144,7 @@ PositionEx::PositionEx(unsigned x, unsigned y)
 //****************************************
     Gaming::PositionNonemptyEx::PositionNonemptyEx(unsigned x, unsigned y)
         : PositionEx(x,y){
-   // setName("PositionNonemptyEx");
+    setName("PositionNonemptyEx");
     }
 
 //************************************************************************************************
